@@ -1,0 +1,24 @@
+Test to check how many mats can be connected to 1 reciever and if it is stable
+Receiver:   ESP32-S3-DevKitC-1
+Mat:        ESP32 DOIT devkit v1
+            ESP32-DevKitm-1 v1.0
+
+8 ESP32's have firmware which simulates a mat, each sends a new sensor value packet every 250 ms
+1 ESP32-S3 is setup as a receiver and sends its data and state to a serial port
+
+This test is to see if the BLE stack handle mulitple connections and if it is stable.
+A nice extra which was tested during testing was how the receiver and mats handled connections 
+and disconnection routines.
+
+Conclusion:
+The BLE stack held up, although it crashed during 1 disconnect, this is expected to be due
+to a bug which causes multiple mats to connect to the same client channel. 
+This bug also causes multiple mats to stack on top of eachother, causing the reading to be incorrect
+thinking a sensor value belongs to a mat with a different ID.
+
+One more important note is that the receiver ESP became relatively hot, either cooling is required or
+this could be reduced by changing BLE settings.
+
+To Do:
+Test max baudrate with multiple connected mats.
+Fix assigned client bug
