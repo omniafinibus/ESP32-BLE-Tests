@@ -1,0 +1,17 @@
+Tested the response time between the action of sending new sensor data to the receiver from a mat,
+and receiving and processing said data.
+Receiver:   ESP32 doit devkit v1
+Mat:        ESP32 doit devkit v1
+
+Upon sending sensor data, the mat sets a pin to high to notify the oscilloscope that the data has been send.
+The receiver does the same once it receives that data.
+
+Conclusion:
+The response time is 50ms which is slower than specified in the requirements.
+Unfortunatly being stuck with NimBLE or BLE libraries  it is not possible to change the BLE stack to improve this.
+
+Actions:
+Test the same setup with multiple connection (max 8 mats)
+Test influence of faster input
+See which improvements could be made to the ESP32 firmware (i.e. clock speed)
+Test the same setup with a newer ESP32 board (i.e. ESP32-S3 devkit)
