@@ -1,40 +1,40 @@
-1 esp32 is setup as a client (receiver) the other as a server (mat).
+1 esp32 is setup as a client the other as a server.
 
-The Mat send a specific amount of packages per second (baudrate) which increases with 1 every second.
-The package contains the mat ID and the number of packages send.
-The mat and receiver were about 50cm from eachother, with limited extra bluetooth devices around (see image)
+The server send a specific amount of packages per second (baudrate) which increases with 1 every second.
+The package contains the server ID and the number of packages send.
+The server and client were about 50cm from eachother, with limited extra bluetooth devices around (see image)
 
-The receiver keeps track of how many packages have been received.
+The client keeps track of how many packages have been received.
 If the received baudrate changes it compares the received amount of packages with the expected amount.
 If they are equal it was a success. This will keep going until a baudrate of 1000
 This test was run twice.
 
 Test 1:
-mat: 1 baud: 500 was succesful with 500 packets received
-mat: 1 baud: 501 was succesful with 501 packets received
-mat: 1 baud: 503 was NOT succesful with 497 packets received
-mat: 1 baud: 503 was succesful with 503 packets received
-mat: 1 baud: 505 was NOT succesful with 474 packets received
-mat: 1 baud: 505 was succesful with 505 packets received
-mat: 1 baud: 507 was NOT succesful with 501 packets received
+server: 1 baud: 500 was succesful with 500 packets received
+server: 1 baud: 501 was succesful with 501 packets received
+server: 1 baud: 503 was NOT succesful with 497 packets received
+server: 1 baud: 503 was succesful with 503 packets received
+server: 1 baud: 505 was NOT succesful with 474 packets received
+server: 1 baud: 505 was succesful with 505 packets received
+server: 1 baud: 507 was NOT succesful with 501 packets received
 onDisconnect
 
 Test 2:
-mat: 1 baud: 499 was succesful with 499 packets received
-mat: 1 baud: 500 was succesful with 500 packets received
-mat: 1 baud: 502 was NOT succesful with 487 packets received
-mat: 1 baud: 503 was NOT succesful with 466 packets received
-mat: 1 baud: 503 was succesful with 503 packets received
-mat: 1 baud: 505 was NOT succesful with 480 packets received
-mat: 1 baud: 506 was NOT succesful with 475 packets received
-mat: 1 baud: 507 was NOT succesful with 483 packets received
-mat: 1 baud: 508 was NOT succesful with 440 packets received
-mat: 1 baud: 509 was NOT succesful with 459 packets received
-mat: 1 baud: 509 was succesful with 509 packets received
-mat: 1 baud: 511 was NOT succesful with 473 packets received
-mat: 1 baud: 512 was NOT succesful with 493 packets received
-mat: 1 baud: 513 was NOT succesful with 492 packets received
-mat: 1 baud: 514 was NOT succesful with 511 packets received
+server: 1 baud: 499 was succesful with 499 packets received
+server: 1 baud: 500 was succesful with 500 packets received
+server: 1 baud: 502 was NOT succesful with 487 packets received
+server: 1 baud: 503 was NOT succesful with 466 packets received
+server: 1 baud: 503 was succesful with 503 packets received
+server: 1 baud: 505 was NOT succesful with 480 packets received
+server: 1 baud: 506 was NOT succesful with 475 packets received
+server: 1 baud: 507 was NOT succesful with 483 packets received
+server: 1 baud: 508 was NOT succesful with 440 packets received
+server: 1 baud: 509 was NOT succesful with 459 packets received
+server: 1 baud: 509 was succesful with 509 packets received
+server: 1 baud: 511 was NOT succesful with 473 packets received
+server: 1 baud: 512 was NOT succesful with 493 packets received
+server: 1 baud: 513 was NOT succesful with 492 packets received
+server: 1 baud: 514 was NOT succesful with 511 packets received
 onDisconnect
 
 Conclusion:
@@ -45,12 +45,12 @@ The server actually crashed at a baudrate of 507, as indicated by the onDisconne
 test 2 started having problems around the same baudrate.
 The server crashed again but now at a baudrate of 514, as indicated by the onDisconnect.
 
-This means that a maximum send delay equals 2ms if only 1 mat is connected.
+This means that a maximum send delay equals 2ms if only 1 server is connected.
 due to the instabilty at the maximum baudrate is recommend to stay below baudrate of 450.
 
 Although it is clear that the crashed before the client did, I can not conclude if the client has a greater receive capacity, than the server has a send capacity.
 
 Further testing:
 Will a greater distance cause the connection to be less stable at equal or lower baudrates?
-How many mats can connect to a single client with a baudrate of 1?
+How many servers can connect to a single client with a baudrate of 1?
 what is the maximum baudrate when the maximum amount of servers are connected?

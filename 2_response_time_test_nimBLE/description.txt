@@ -1,7 +1,7 @@
 Tested the response time between the action of sending new sensor data to the receiver from a mat,
 and receiving and processing said data.
-Receiver:   ESP32 doit devkit v1
-Mat:        ESP32 doit devkit v1
+client:   ESP32 doit devkit v1
+server:   ESP32 doit devkit v1
 
 Upon sending sensor data, the mat sets a pin to high to notify the oscilloscope that the data has been send.
 The receiver does the same once it receives that data.
